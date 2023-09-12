@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 import { Category } from './category'
 import { omit } from 'lodash'
 describe('Category Test ', () => {
@@ -54,5 +55,70 @@ describe('Category Test ', () => {
       name: 'Movie',
       createdAt,
     })
+  })
+  test('getter of name field', () => {
+    const category = new Category({ name: 'Movie' })
+    expect(category.name).toBe('Movie')
+  })
+  test('getter and setter of description field', () => {
+    let category = new Category({
+      name: 'Movie',
+    })
+    expect(category.description).toBeNull()
+
+    category = new Category({
+      name: 'Movie',
+      description: 'some description',
+    })
+    expect(category.description).toBe('some description')
+
+    category = new Category({
+      name: 'Movie',
+    })
+    category['description'] = 'other description'
+    expect(category.description).toBe('other description')
+
+    category = new Category({
+      name: 'Movie',
+    })
+    category['description'] = null
+    expect(category.description).toBeNull()
+
+    category = new Category({
+      name: 'Movie',
+    })
+    category['description'] = undefined
+    expect(category.description).toBeNull()
+  })
+  test('getter and setter of isActive prop', () => {
+    let category = new Category({
+      name: 'Movie',
+    })
+    expect(category.isActive).toBeTruthy()
+
+    category = new Category({
+      name: 'Movie',
+      isActive: false,
+    })
+    expect(category.isActive).toBeFalsy()
+
+    category = new Category({
+      name: 'Movie',
+      isActive: true,
+    })
+    expect(category.isActive).toBeTruthy()
+  })
+  test('getter of createdAt prop', () => {
+    const createdAt = new Date()
+    let category = new Category({
+      name: 'Movie',
+      createdAt,
+    })
+    expect(category.createdAt).toBe(createdAt)
+
+    category = new Category({
+      name: 'Movie',
+    })
+    expect(category.createdAt).toBeInstanceOf(Date)
   })
 })
