@@ -1,3 +1,5 @@
+import { randomUUID as uuidv4 } from 'crypto'
+
 export type CategoryProperties = {
   name: string
   isActive?: boolean
@@ -5,7 +7,12 @@ export type CategoryProperties = {
   createdAt?: Date
 }
 export class Category {
-  constructor(public readonly props: CategoryProperties) {
+  public readonly id: string
+  constructor(
+    public readonly props: CategoryProperties,
+    id?: string,
+  ) {
+    this.id = id || uuidv4()
     this.description = this.props.description
     this.props.isActive = this.props.isActive ?? true
     this.props.createdAt = this.props.createdAt ?? new Date()

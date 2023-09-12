@@ -1,6 +1,9 @@
 /* eslint-disable dot-notation */
 import { Category } from './category'
 import { omit } from 'lodash'
+const regexExp =
+  /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi
+
 describe('Category Test ', () => {
   test('constructor of category', () => {
     let category = new Category({
@@ -55,6 +58,36 @@ describe('Category Test ', () => {
       name: 'Movie',
       createdAt,
     })
+  })
+  test('id fiel', () => {
+    let category = new Category({
+      name: 'Movie',
+    })
+    expect(category.id).not.toBeNull()
+    expect(regexExp.test(category.id)).toBeTruthy()
+
+    category = new Category(
+      {
+        name: 'Movie',
+      },
+      undefined,
+    )
+    expect(category.id).not.toBeNull()
+
+    category = new Category(
+      {
+        name: 'Movie',
+      },
+      null,
+    )
+    expect(category.id).not.toBeNull()
+    category = new Category(
+      {
+        name: 'Movie',
+      },
+      '92f08736-5165-4b92-9d5a-caa0df9e7811',
+    )
+    expect(regexExp.test(category.id)).not.toBeNull()
   })
   test('getter of name field', () => {
     const category = new Category({ name: 'Movie' })
