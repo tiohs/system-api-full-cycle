@@ -1,4 +1,4 @@
-import { randomUUID as uuidv4 } from 'crypto'
+import UniqueEntityId from '../../../@seedwork/domain/unique-entity-id.vo'
 
 export type CategoryProperties = {
   name: string
@@ -7,12 +7,12 @@ export type CategoryProperties = {
   createdAt?: Date
 }
 export class Category {
-  public readonly id: string
+  public readonly id: UniqueEntityId
   constructor(
     public readonly props: CategoryProperties,
-    id?: string,
+    id?: UniqueEntityId,
   ) {
-    this.id = id || uuidv4()
+    this.id = id || new UniqueEntityId()
     this.description = this.props.description
     this.props.isActive = this.props.isActive ?? true
     this.props.createdAt = this.props.createdAt ?? new Date()

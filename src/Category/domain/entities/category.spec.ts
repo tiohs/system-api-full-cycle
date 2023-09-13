@@ -1,8 +1,7 @@
 /* eslint-disable dot-notation */
+import UniqueEntityId from '../../../@seedwork/domain/unique-entity-id.vo'
 import { Category } from './category'
 import { omit } from 'lodash'
-const regexExp =
-  /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi
 
 describe('Category Test ', () => {
   test('constructor of category', () => {
@@ -64,7 +63,7 @@ describe('Category Test ', () => {
       name: 'Movie',
     })
     expect(category.id).not.toBeNull()
-    expect(regexExp.test(category.id)).toBeTruthy()
+    expect(category.id).toBeInstanceOf(UniqueEntityId)
 
     category = new Category(
       {
@@ -85,9 +84,9 @@ describe('Category Test ', () => {
       {
         name: 'Movie',
       },
-      '92f08736-5165-4b92-9d5a-caa0df9e7811',
+      new UniqueEntityId(),
     )
-    expect(regexExp.test(category.id)).not.toBeNull()
+    expect(category.id).toBeInstanceOf(UniqueEntityId)
   })
   test('getter of name field', () => {
     const category = new Category({ name: 'Movie' })
