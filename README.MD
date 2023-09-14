@@ -20,3 +20,5 @@ A pasta para esses tipos de classes é chamada SeedWork e não algo como Framewo
 
 Em resumo, o Seedwork é como um kit de ferramentas que você pode usar para construir seu modelo de domínio mais facilmente e sem repetir o mesmo código várias vezes.
 
+### spyOn 
+Ele serve para espionar um metodo mais caso você ativa no jest config ele não limpa o numero de vezes que é executado em varios teste num arquivo a não ser que você use um metodo beforeEach para fazer limpeza com a função jest.clearAllMocks() 
