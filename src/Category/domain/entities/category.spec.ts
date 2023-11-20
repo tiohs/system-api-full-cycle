@@ -63,7 +63,6 @@ describe('Category Test ', () => {
       name: 'Movie',
     })
     expect(category.id).not.toBeNull()
-    expect(category.id).not.toBeNull()
     expect(category.id).toBeInstanceOf(UniqueEntityId)
 
     category = new Category(
