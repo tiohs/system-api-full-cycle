@@ -22,6 +22,10 @@ export class Category {
     return this.props.name
   }
 
+  get nam(): string {
+    return this.props.name
+  }
+
   get isActive(): boolean {
     return this.props.isActive
   }
